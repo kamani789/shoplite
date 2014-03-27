@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+            
+            
+                        <TableRow   android:paddingTop="10px" android:gravity="left">
+                             
+                             <TextView
+                                 android:id="@+id/txtregister"
+                                  android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerHorizontal="true"
+					        android:layout_centerVertical="true"
+					        android:textColor="#898989"
+					        android:textStyle="bold"
+					        android:textSize="16sp"
+                                 android:text="Registration"
+                                 />
+                        
+                         </TableRow>
+                          <TableRow   android:paddingTop="10px" android:gravity="left">
+                             
+                             <TextView
+                                 android:id="@+id/regerrmsg"
+                                  android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:textColor="#898989"
+					        android:textStyle="bold"
+					        android:textSize="16sp"
+                                 android:text=""
+                                 />
+                        
+                         </TableRow>
+                          <TableRow   android:paddingTop="10px" android:gravity="left">
+                             
+                             <TextView
+                                 android:id="@+id/registerhint"
+                                 android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1"
+                                 android:text="Please Register below"
+                                 
+                                  />
+                        
+                         </TableRow>
+                         
+                       
+                        <TableRow android:layout_marginTop="20dip" >
+                           <EditText
+                               android:id="@+id/regusername"
+                               android:hint="Name"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+                          <TableRow android:layout_marginTop="20dip" >
+                           <EditText
+                               android:id="@+id/email"
+                               android:hint="E-Mail address"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+                          <TableRow android:layout_marginTop="20dip" >
+                           <EditText
+                               android:id="@+id/regpwd"
+                               android:hint="Enter a password"
+                               android:inputType="textPassword"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+                          <TableRow android:layout_marginTop="20dip" >
+                           <EditText
+                               android:id="@+id/regrepwd"
+                               android:hint="Re-enter password"
+                               android:inputType="textPassword"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+
+                         
+
+                         <TableRow android:gravity="center" android:layout_marginTop="20dip" >
+                         
+                            <Button
+                            android:text="Submit"
+                            android:clickable="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/save" android:layout_span="2" ></Button>  
+                         </TableRow>
+            
+     </TableLayout>

@@ -1,0 +1,97 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    <TableLayout
+        android:id="@+id/linearMain"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >    
+        
+         <TableRow
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/trset" >
+        </TableRow>
+         <TableRow
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/trset1" >
+        </TableRow>
+         <TableRow
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/trset2" >
+        </TableRow>
+        <TableRow 
+            android:layout_gravity="center"
+            android:id="@+id/trset3"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="4dp">
+            <Button
+            android:id="@+id/buybutton"            
+             android:layout_width="270dp"                       
+            android:background="@android:color/holo_orange_dark"    
+            android:layout_marginTop="10dp" 
+            android:layout_marginBottom="4dp"   
+            android:text="Buynow">
+                </Button>>
+            </TableRow>
+             <TableRow 
+            android:layout_gravity="center"          
+            android:id="@+id/trset4"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <Button
+            android:id="@+id/addtocart"
+          android:layout_width="270dp"
+            android:background="@android:color/holo_blue_dark"   
+            android:layout_marginBottom="4dp"    
+            android:text="Add to Cart">
+                </Button>>
+            </TableRow>
+            <TableRow 
+            
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/trset5"
+            android:layout_marginBottom="4dp">
+            <Button
+            android:id="@+id/subscribe"      
+           android:layout_width="270dp"                     
+            android:layout_marginBottom="4dp"
+            android:text="Subscribe For this">
+                </Button>
+            </TableRow>
+            <TableRow 
+            android:layout_gravity="center"
+            android:id="@+id/trset6"
+            android:layout_marginBottom="4dp">
+            <TextView
+            android:id="@+id/itemdescription"              
+            android:layout_gravity="left"
+            android:layout_marginBottom="4dp"
+            android:text="About this Item">
+                </TextView>>
+            </TableRow>
+        </TableLayout>
+    
+</TableLayout>

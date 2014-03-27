@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10px" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Forgot Password ?"
+            android:textColor="#898989"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10px" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Enter the E-mail address associated with your account,then click continue.we&apos;ll email you your password"
+            android:textColor="#222222"
+            android:textSize="10sp" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10px" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="E-Mail address"
+            android:textColor="#112222"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10px" >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="#112222"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10px" >
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_span="2"
+            android:clickable="true"
+            android:text="Submit"
+            android:textColor="#FFFFFF" >
+        </Button>
+    </TableRow>
+
+</TableLayout>

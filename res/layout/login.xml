@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+               android:layout_width="match_parent"
+  			  android:layout_height="match_parent"
+   
+                >
+            // android:background="@drawable/qqqq"
+            
+                        <TableRow   android:paddingTop="10px" android:gravity="left">
+					                             
+					    <TextView
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"					        
+					        android:textColor="#898989"
+					        android:textStyle="bold"
+					        android:textSize="16sp"
+					        android:text="Sign in" />					     
+                        
+                         </TableRow>
+                           <TableRow   android:paddingTop="10px" android:gravity="left">
+					                             
+					    <TextView
+					        android:id="@+id/loginerrmsg"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:textColor="#CCCCCC"
+					        android:textStyle="bold"
+					        android:textSize="16sp"
+					        android:text="" />
+                        
+                         </TableRow>
+                        <TableRow android:layout_marginTop="20dip" >
+                            
+                                                    
+                           <EditText
+                               android:id="@+id/loginusername"
+                               android:hint="User Name"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+
+                         <TableRow android:layout_marginTop="20dip" >
+                             
+                           
+                        
+                           <EditText
+                               android:id="@+id/password"
+                               android:hint="Enter password"
+                               android:inputType="textPassword"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="20dip"
+                               android:layout_marginRight="20dip"
+                               android:layout_weight="1" >
+                                
+                            </EditText>
+                           
+                         </TableRow>
+							
+                         <TableRow android:gravity="center" android:layout_marginTop="20dip" >
+                         
+                            <Button
+                            android:text="Sign in"
+                            android:clickable="true"                  
+                            android:enabled="true"          
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textColor="#444444"
+                            android:id="@+id/save" android:layout_span="2" ></Button>  
+                         
+                         </TableRow>
+							<TableRow android:layout_marginTop="20dip" >
+                             
+                            <TextView android:text="Forgot you password ?"  
+                                android:id="@+id/loginforgot"
+                            android:layout_width="wrap_content"
+                            android:clickable="true"
+                            android:textSize="20sp"
+                            android:textColor="#898989"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dip"></TextView>
+                            </TableRow>
+                         
+                          <TableRow android:gravity="center" android:layout_marginTop="20dip" >
+                         
+                            <Button
+                            android:text="Create account"
+                            android:clickable="true"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textColor="#444444"
+                            android:id="@+id/register" android:layout_span="2" ></Button>  
+                         </TableRow>
+            
+     </TableLayout>

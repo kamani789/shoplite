@@ -1,0 +1,242 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+     >
+
+        
+   <TableRow
+        android:gravity="left"
+        android:paddingTop="10dp" >
+		   <Button
+            android:id="@+id/shopbydept"
+            android:layout_width="200dp"
+            android:text="ShopByDepartment" />
+
+		 <!--   <Button
+            android:id="@+id/SearchShop"
+            android:layout_width="150dp"
+            android:text="SearchShopLite" /> -->
+		  
+	</TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="left"
+            android:text="Sign in"
+            android:textColor="#898989"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="                 "
+            android:textColor="#898989"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/accnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#898989"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10dp" >
+    </TableRow>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_marginTop="0dp"
+        android:scrollbars="none" >
+
+        <TableLayout
+            android:id="@+id/linearMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <TableRow
+                android:id="@+id/trset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trset1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trset2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="5dp" >
+            </TableRow>
+        </TableLayout>
+    </HorizontalScrollView>
+
+    <TableLayout
+        android:id="@+id/suggestion"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" >
+
+        <TableRow
+            android:gravity="left"
+            android:paddingTop="0dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="your recommendations"
+                android:textColor="#898989"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:layout_marginTop="0dp"
+        android:scrollbars="none" >
+
+        <TableLayout
+            android:id="@+id/linearsecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TableRow
+                android:id="@+id/trset4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trset5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trset6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                 >
+            </TableRow>
+        </TableLayout>
+    </HorizontalScrollView>
+<TableLayout
+        android:id="@+id/bestselling"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" >
+    <TableRow
+        android:gravity="left"
+        android:paddingTop="10dp" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Best Selling video Games"
+                android:textColor="#898989"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+     <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:layout_marginTop="0dp"
+        android:scrollbars="none" >
+
+        <TableLayout
+            android:id="@+id/linearselling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TableRow
+                android:id="@+id/trsetv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trsetv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trsetv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                 >
+            </TableRow>
+        </TableLayout>
+    </HorizontalScrollView>
+
+</TableLayout>
+</ScrollView>
