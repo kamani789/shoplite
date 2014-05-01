@@ -36,7 +36,7 @@ public class SecondScreen extends Activity {
 				// Get product details
 				String pName = aController.getCart().getProducts(i)
 						.getProductName();
-				int pPrice = aController.getCart().getProducts(i)
+				String pPrice = aController.getCart().getProducts(i)
 						.getProductPrice();
 				String pDisc = aController.getCart().getProducts(i)
 						.getProductDesc();

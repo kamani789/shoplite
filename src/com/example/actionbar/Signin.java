@@ -68,10 +68,13 @@ public class Signin extends Activity implements OnClickListener {
 				Userdatadbtransactions u1 = new Userdatadbtransactions();
 				boolean isvalid = false;
 				isvalid = u1.isvaliddetails(getApplication(), uname, pwd);
+				String email=u1.getemail(getApplication(), uname, pwd);
 				if (isvalid) {
 					SharedPreferences.Editor edit=shprefs.edit();
+					
 					String welcome="Hello,"+uname;
 					edit.putString("name", welcome);
+					edit.putString("email", email);
 					edit.commit();
 					Intent i2 = new Intent(this, mainactivity.class);
 					startActivity(i2);

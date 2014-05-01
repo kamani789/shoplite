@@ -40,13 +40,14 @@ public class Userdatadbtransactions {
 		else
 			return false;
 	}
-
+	
 	public boolean isvaliddetails(Context context, String id, String pwd) {
 		System.out.println("inside is validate method");
 		boolean isvalid = false;
 		com.example.db.DBAdapter.init(context);
 		UserData ud = null;
 		List<UserData> data = com.example.db.DBAdapter.getAllUserData();
+		System.out.println("data"+data.size()+data.get(0));
 		for (com.example.db.UserData dt : data) {
 			System.out.println("inside assigning method");
 			if (id.equals(dt.name))
@@ -59,6 +60,52 @@ public class Userdatadbtransactions {
 		else
 			return false;
 
+	}
+	public boolean delete(Context context)
+	{
+		System.out.println("inside is validate method");
+		com.example.db.DBAdapter.init(context);		
+		long st=com.example.db.DBAdapter.isdeleted();
+		if(st>0)
+			return true;
+		else
+			return false;
+	}
+	public boolean ismailexists(Context context,String email)
+	{
+		boolean isexists=false;
+		List<UserData> data = com.example.db.DBAdapter.getAllUserData();
+		for (com.example.db.UserData dt : data) {
+			System.out.println("inside checking mail exists  method"+email+"   and   "+dt.getEmail());
+				if(dt.getEmail().equalsIgnoreCase(email))
+				{
+					System.out.println("inside match");
+					isexists=true;
+					break;
+				}
+		}
+		return isexists;
+	}
+	public String getemail(Context context, String id, String pwd) {
+		System.out.println("inside is validate method");
+		String email  = "";
+		com.example.db.DBAdapter.init(context);
+		UserData ud = new UserData();
+		List<UserData> data = com.example.db.DBAdapter.getAllUserData();
+		System.out.println("data size is"+data.size());
+		for (com.example.db.UserData dt : data) {
+			System.out.println("inside assigning method");
+			if (id.equals(dt.name))
+				ud = dt;
+		}
+		if (ud == null)
+			email="default mail";
+		if (id.equalsIgnoreCase(ud.getName()) && pwd.equals(ud.getPassword()))
+			email= ud.getEmail();
+		else
+			email="default mail";
+		
+		return email;
 	}
 
 }

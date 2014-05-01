@@ -28,7 +28,7 @@ public static final String COL_DEFINITION = "DEFINITION";
 
 private static final String DATABASE_NAME = "DB_sqllite_shop";
 private static final String FTS_VIRTUAL_TABLE = "PHONE";
-private static final int DATABASE_VERSION = 1;
+private static final int DATABASE_VERSION = 19;
 
 private static DatabaseOpenHelper mDatabaseOpenHelper;
 

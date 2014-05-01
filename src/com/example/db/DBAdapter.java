@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -40,7 +41,7 @@ public class DBAdapter {
 	public static final String DATABASE_NAME = "DB_sqllite_shop";
 
 
-	public static final int DATABASE_VERSION = 1;// started at 1
+	public static final int DATABASE_VERSION = 19;// started at 1
 
 	
 	public static final String USER_TABLE = "tbl_user_accounts";
@@ -54,7 +55,7 @@ public class DBAdapter {
 
 	private static DataBaseHelper DBHelper = null;
 
-	protected DBAdapter() {
+	public DBAdapter() {
 	}
 
 
@@ -194,13 +195,14 @@ public class DBAdapter {
 
 	// Getting All Contacts
 	public static List<UserData> getAllUserData() {
+		System.out.println("inside get all user data");
 		List<UserData> contactList = new ArrayList<UserData>();
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + USER_TABLE;
 
 		final SQLiteDatabase db = open();
 		Cursor cursor = db.rawQuery(selectQuery, null);
-
+		System.out.println("cursor length in get user data is"+cursor.getCount());
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
@@ -266,7 +268,18 @@ public class DBAdapter {
 				new String[] { String.valueOf(data.getID()) });
 		db.close();
 	}
-
+	public static long isdeleted()
+	{
+		System.out.println("inside adapter deleting");		
+		final SQLiteDatabase db = open();
+		String query = "delete * from " + USER_TABLE ;		
+		long status=db.delete(USER_TABLE, null, null);
+		System.out.println("after deleting status is-->>"+status);
+		db.close();
+		return status;
+		
+	}
+	
 	// Getting contacts Count
 	public static int getUserDataCount() {
 		String countQuery = "SELECT  * FROM " + USER_TABLE;

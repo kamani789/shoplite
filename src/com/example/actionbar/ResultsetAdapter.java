@@ -15,12 +15,12 @@ public class ResultsetAdapter extends BaseAdapter {
 	  
 	 private List<ModelProducts> mProductList;
 	 private LayoutInflater mInflater;
-	 private boolean mShowCheckbox;
+	 
 	  
-	 public ResultsetAdapter(List<ModelProducts> list, LayoutInflater inflater, boolean showCheckbox) {
+	 public ResultsetAdapter(List<ModelProducts> list, LayoutInflater inflater) {
 	  mProductList = list;
 	  mInflater = inflater;
-	  mShowCheckbox = showCheckbox;
+	 
 	 }
 	 
 	 @Override
@@ -44,14 +44,14 @@ public class ResultsetAdapter extends BaseAdapter {
 	   
 	  if (convertView == null) {
 		  System.out.println("inside convert view null");
-	   convertView = mInflater.inflate(R.layout.item,
-	     null);
+	   convertView = mInflater.inflate(R.layout.item, null);
 	   item = new ViewItem();
 	    
 	   item.productImageView = (ImageView) convertView.findViewById(R.id.ImageViewItem);
 	    
 	   item.productTitle = (TextView) convertView.findViewById(R.id.TextViewItem);
 	   item.productDesc=(TextView)convertView.findViewById(R.id.TextView01);
+	   item.productPrice=(TextView)convertView.findViewById(R.id.TextView02);
 	   
 	  
 	    
@@ -65,6 +65,7 @@ public class ResultsetAdapter extends BaseAdapter {
 	  item.productImageView.setImageDrawable(curProduct.productImage);
 	  item.productTitle.setText(curProduct.getProductName());
 	  item.productDesc.setText(curProduct.getProductDesc());
+	  item.productPrice.setText(curProduct.getProductPrice());
 	   
 	   
 	  return convertView;

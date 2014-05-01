@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Security;
 import java.util.Properties;
+import android.os.StrictMode;
 
 public class GMailSender extends javax.mail.Authenticator {
 	private String mailhost = "smtp.gmail.com";
@@ -49,7 +50,7 @@ public class GMailSender extends javax.mail.Authenticator {
 
 	public synchronized void sendMail(String subject, String body,
 			String sender, String recipients) throws Exception {
-		System.out.println("inside gmail sender");
+		System.out.println("inside gmail sender send mail");
 		System.out.println(recipients);
 		MimeMessage message = new MimeMessage(session);
 		DataHandler handler = new DataHandler(new ByteArrayDataSource(

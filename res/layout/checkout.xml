@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Shipping Address"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/street1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address 1"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/street2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address 2"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        android:ems="10"
+        android:inputType="textPersonName" />
+    
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+     <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/country_arrays"
+        android:prompt="@string/country_prompt" />
+ 
+      <Button
+      android:text="Ship to this address"
+      android:clickable="true"
+      android:layout_gravity="center"
+	  android:layout_width="280dp"
+      android:layout_height=" 60dp"
+      android:textColor="#444444"
+      android:layout_span="2"
+      android:id="@+id/shipAddress" >
+          
+      </Button>  
+    
+ 
+
+</LinearLayout>

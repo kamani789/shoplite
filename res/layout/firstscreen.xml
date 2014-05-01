@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="                 "
+            android:text="              "
             android:textColor="#898989"
             android:textSize="16sp"
             android:textStyle="bold" />

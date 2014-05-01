@@ -1,6 +1,8 @@
 package com.example.actionbar;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
 import android.app.Application;
 
 public class Controller extends Application {
@@ -29,5 +31,18 @@ public class Controller extends Application {
 
 		return myProducts.size();
 	}
+
+	
+	 public void onCreate() {
+         super.onCreate();
+   }
+
+   private Activity mCurrentActivity = null;
+   public Activity getCurrentActivity(){
+         return mCurrentActivity;
+   }
+   public void setCurrentActivity(Activity mCurrentActivity){
+         this.mCurrentActivity = mCurrentActivity;
+   }
 
 }

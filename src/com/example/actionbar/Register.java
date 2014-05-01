@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.os.StrictMode;
 
 import com.example.serviceclasses.EmailValidator;
 import com.example.serviceclasses.GMailSender;
@@ -48,9 +49,13 @@ public class Register extends Activity implements OnClickListener {
 		boolean isall = false;
 		isall = isallentered();
 		boolean isemailvalid = false;
-		EmailValidator e = new EmailValidator();
+		EmailValidator e = new EmailValidator();		
+		Userdatadbtransactions u1 = new Userdatadbtransactions();
+		//u1.delete(getApplicationContext());
+		//if(u1.ismailexists(getApplicationContext(), et2.getText().toString()))
+		
 		isemailvalid = e.validate(et2.getText().toString());
-		if (isall && isemailvalid) {
+		if (isall && isemailvalid ) {
 			System.out.println("inside success of entering all details");
 
 			u.setName(et1.getText().toString());
@@ -58,22 +63,31 @@ public class Register extends Activity implements OnClickListener {
 			u.setPassword(et3.getText().toString());
 			u.setRole("Admin");
 			u.setAccount_status("A");
-			Userdatadbtransactions u1 = new Userdatadbtransactions();
+			
+			
+			
 			isuploaded = u1.isdatainserted(getApplicationContext(), u);
-			GMailSender sender = new GMailSender("kamanichandrababu@gmail.com",
-					"9553339236");
-			try {
-				sender.sendMail(
-						"ShopLiteAccountDetails",
-						"Your Account Has been created successfully with ShopLite",
-						"kamanichandrababu@gmail.com", et2.getText().toString());
-			} catch (Exception e1) {
-				System.out.println(e1);
-			}
+			
 			if (isuploaded) {
 				System.out.println("inside success");
 				Log.d("success", "able to insert record in database");
+				/*StrictMode.ThreadPolicy policy = new
+						StrictMode.ThreadPolicy.Builder()
+						.permitAll().build();
+						StrictMode.setThreadPolicy(policy);*/
+				GMailSender sender = new GMailSender("kamanichandrababu@gmail.com",
+						"9553339236");
+				try {
+					sender.sendMail(
+							"ShopLiteAccountDetails",
+							"Your Account Has been created successfully with ShopLite with the user name "+et1.getText().toString(),
+							"kamanichandrababu@gmail.com", et2.getText().toString());
+					
+				} catch (Exception e1) {
+					System.out.println(e1);
+				}
 				Intent i = new Intent(this, Userdatacreation.class);
+				i.putExtra("msg", " S");
 				startActivity(i);
 			} else {
 				System.out.println("unable to insert recoerd in database");
@@ -85,6 +99,14 @@ public class Register extends Activity implements OnClickListener {
 
 		}
 	}
+		/*}
+		else
+		{
+			System.out.println("Please enter valid email address");
+			error = error + " Mail Exists,Please use another mail id";
+			terr.setText(error);
+		}
+	}*/
 
 	private boolean isallentered() {
 		System.out.println("inside is all entered");

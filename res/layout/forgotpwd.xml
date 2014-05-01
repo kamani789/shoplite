@@ -52,6 +52,7 @@
         android:paddingTop="10px" >
 
         <EditText
+            android:id="@+id/forgotemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -67,7 +68,7 @@
         android:paddingTop="10px" >
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/registersend"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_span="2"

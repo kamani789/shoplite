@@ -1,6 +1,9 @@
 package com.example.actionbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -9,7 +12,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -24,6 +29,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.db.DBAdapter;
+import com.example.db.OrderDetailsDBAdapter;
 import com.example.search.DatabaseTable;
 import com.example.search.PhoneDatabaseclass;
 import com.example.serviceclasses.ProductList;
@@ -39,10 +46,12 @@ public class mainactivity extends Activity implements OnClickListener {
 	Editor edit;
 	int imageid;
 	int id;
-	String pName;
+	String pName,pimage,pdesc,pbrand;
 	String pPrice;
 	DatabaseTable  db;
 	PhoneDatabaseclass ph;
+	OrderDetailsDBAdapter oradap;
+	DBAdapter user;
 	
 	
 	@Override
@@ -51,8 +60,9 @@ public class mainactivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstscreen);
 		 db = new DatabaseTable(getApplicationContext());
-		ph=new PhoneDatabaseclass(getApplicationContext());
-		
+		ph=new PhoneDatabaseclass(getApplicationContext());	
+		oradap=new OrderDetailsDBAdapter(getApplicationContext());
+		user=new DBAdapter();
 		handleIntent(getIntent());
 		Button b2 = (Button) findViewById(R.id.shopbydept);
 		b2.setOnClickListener(this);
@@ -61,6 +71,8 @@ public class mainactivity extends Activity implements OnClickListener {
 		TextView tv = (TextView) findViewById(R.id.signin);
 		shprefs = getSharedPreferences(myshared, 0);
 		String name = shprefs.getString("name", "Sign in");
+		String email=shprefs.getString("email", "default one in main");
+		System.out.println("email id in main activity is"+email);
 		System.out.println("before printing shared data name");
 		System.out.println(name);
 		tv.setText(name);
@@ -123,8 +135,11 @@ public class mainactivity extends Activity implements OnClickListener {
 		for (int j = 0; j < 3; j++) {
 			// Get probuct data from product data arraylist
 			String[] s = a.get(j);
-			pName = s[1];
+			pName = s[0];
 			pPrice = s[2];
+			pdesc=s[1];
+			pimage=s[3];
+			pbrand=s[4];
 			TextView product = new TextView(this);
 			product.setText(" " + pName + "    ");
 			product.setGravity(Gravity.LEFT);
@@ -140,19 +155,28 @@ public class mainactivity extends Activity implements OnClickListener {
 			tr2.addView(price);
 			ImageView iv = new ImageView(getApplicationContext());
 			if (j == 0) {
-				Bundle bun = new Bundle();
-				bun.putString("name", pName);
-				bun.putString("price", pPrice);
-				Intent intt = new Intent(getApplicationContext(),
-						mainactivity.class);
-				intt.putExtras(intt);
-				iv.setImageResource(R.drawable.xplus);
+			
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				iv.setImageDrawable(drawable );
+				
+				
 				iv.setTag(j + 10);
 			} else if (j == 1) {
-				iv.setImageResource(R.drawable.xkindle);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				iv.setImageDrawable(drawable );
 				iv.setTag(j + 10);
 			} else {
-				iv.setImageResource(R.drawable.hplaptop);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				iv.setImageDrawable(drawable );
 				iv.setTag(j + 10);
 			}
 			iv.setAdjustViewBounds(false);
@@ -169,28 +193,54 @@ public class mainactivity extends Activity implements OnClickListener {
 				public void onClick(View v) {
 
 					System.out.println("id in on click view is");
-
+					
 					System.out.println(id);
+					ProductList p1 = new ProductList();
+					ArrayList<String[]> a1 = p1.getproductinfo();
+					String[] s1 ;
 					Bundle b = new Bundle();
 					ImageView iv1 = (ImageView) v;
 					switch (Integer.parseInt(iv1.getTag().toString())) {
 					case 10:
+						s1= a1.get(0);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
 
-						b.putString("image", "xplus");
-						b.putString("name", "SamsungGalaxy ");
-						b.putString("price", "$ 123.23");
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 
 					case 11:
-						b.putString("image", "xkindle");
-						b.putString("name", "kindle Fire HD");
-						b.putString("price", "$ 189.35");
-
+						s1 = a1.get(1);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 					case 12:
-						b.putString("image", "hplaptop");
-						b.putString("name", pName);
+						 s1 = a1.get(2);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
 						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 					}
 
@@ -258,8 +308,10 @@ public class mainactivity extends Activity implements OnClickListener {
 		for (int j = 3; j < 8; j++) {
 			// Get probuct data from product data arraylist
 			String[] s = a.get(j);
-			pName = s[1];
+			pName = s[0];
 			pPrice = s[2];
+			pdesc=s[1];
+			pimage=s[3];
 			TextView product = new TextView(this);
 			product.setText(" " + pName + "    ");
 			product.setGravity(Gravity.LEFT);
@@ -276,31 +328,56 @@ public class mainactivity extends Activity implements OnClickListener {
 			ImageView ivg = new ImageView(getApplicationContext());
 			if (j == 3){
 				ivg.setTag(j + 10);
-				ivg.setImageResource(R.drawable.proteindrink);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 4)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.toolkit);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 5)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.camera);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 6)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.iphone4s);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.nikefieldglove);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			ivg.setAdjustViewBounds(false);
 			imageid = j;
@@ -316,36 +393,79 @@ public class mainactivity extends Activity implements OnClickListener {
 					System.out.println("id in on click view is");
 
 					System.out.println(id);
+					ProductList p1 = new ProductList();
+					ArrayList<String[]> a1 = p1.getproductinfo();
+					String[] s1 ;
 					Bundle b = new Bundle();
 					ImageView iv1 = (ImageView) v;
 					switch (Integer.parseInt(iv1.getTag().toString())) {
 					case 13:
 
-						b.putString("image", "proteindrink");
-						b.putString("name", "Boost ");
-						b.putString("price", "$40.00");
+						s1= a1.get(3);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 
 					case 14:
-						b.putString("image", "toolkit");
-						b.putString("name", "Nailer Tools");
-						b.putString("price", "$35.50");
+						s1= a1.get(4);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 
 						break;
 					case 15:
-						b.putString("image", "camera");
-						b.putString("name", "Nikon");
-						b.putString("price", "$160.00");
+						s1= a1.get(5);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 					case 16:
-						b.putString("image", "iphone");
-						b.putString("name", "iphone5 32GB");
-						b.putString("price", "$345.67");
+						s1= a1.get(6);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 					case 17:
-						b.putString("image", "nikefieldglove");
-						b.putString("name", pName);
+						s1= a1.get(7);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
 						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 
 					}
@@ -418,8 +538,11 @@ public class mainactivity extends Activity implements OnClickListener {
 
 			// Get probuct data from product data arraylist
 			String[] s = a.get(j);
-			pName = s[1];
+			pName = s[0];
 			pPrice = s[2];
+			pdesc=s[1];
+			pimage=s[3];
+			System.out.println("pimage in third row is"+pimage);
 			TextView product = new TextView(this);
 			product.setText(" " + pName + "    ");
 			product.setGravity(Gravity.LEFT);
@@ -436,31 +559,56 @@ public class mainactivity extends Activity implements OnClickListener {
 			ImageView ivg = new ImageView(getApplicationContext());
 			if (j == 8){
 				ivg.setTag(j + 10);
-				ivg.setImageResource(R.drawable.playstation4);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 9)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.xboxconsole);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 10)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.titanfall);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else if (j == 11)
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.finalfantasy);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			else
 			{
 				ivg.setTag(j + 10);
 
-				ivg.setImageResource(R.drawable.nikefieldglove);
+				Resources res = getResources();
+				String mDrawableName = pimage;
+				int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+				Drawable drawable = res.getDrawable(resID );
+				ivg.setImageDrawable(drawable );
+				
 			}
 			ivg.setAdjustViewBounds(false);
 			imageid = j;
@@ -476,31 +624,64 @@ public class mainactivity extends Activity implements OnClickListener {
 					System.out.println("id in on click view is");
 
 					System.out.println(id);
+					ProductList p1 = new ProductList();
+					ArrayList<String[]> a1 = p1.getproductinfo();
+					String[] s1 ;
 					Bundle b = new Bundle();
 					ImageView iv1 = (ImageView) v;
 					switch (Integer.parseInt(iv1.getTag().toString())) {
 					case 18:
-
-						b.putString("image", "Playstation");
-						b.putString("name", "PlayStation4 ");
-						b.putString("price", "$160.00");
-						break;
+						s1= a1.get(8);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 
 					case 19:
-						b.putString("image", "XBOX Console");
-						b.putString("name", "Xbox 360 Console");
-						b.putString("price", "$260.00");
+						s1= a1.get(9);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 
 						break;
 					case 20:
-						b.putString("image", "titan fall");
-						b.putString("name", "Xbox Titan fall");
-						b.putString("price", "$30.00");
+						s1= a1.get(10);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
+						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 					case 21:
-						b.putString("image", "nikefieldglove");
-						b.putString("name", pName);
+						s1= a1.get(11);
+						pName = s1[0];
+						pPrice = s1[2];
+						pdesc=s1[1];
+						pimage=s1[3];
+						pbrand=s1[4];
+						b.putString("image", pimage);
+						b.putString("name",pName );
 						b.putString("price", pPrice);
+						b.putString("desc", pdesc);
+						b.putString("brand", pbrand);
 						break;
 
 					}
@@ -581,24 +762,55 @@ public class mainactivity extends Activity implements OnClickListener {
 	      String query = intent.getStringExtra(SearchManager.QUERY);
 	      System.out.println("inside querying and query is"+query);
 	      Cursor c = db.getWordMatches(query, null);
-	      
+	      	if(c!=null)
+	      	{	
+	      		Bundle b=new Bundle();
+	      		
+	      		System.out.println("inside cursor not null");
 	    	  if(c.getCount()>0)
 	    	  {
 	    		  System.out.println("cursor results are"+c.getCount());
 	    		  c.moveToFirst();
-	    		  while(!c.isLast())
+	    		  int i=1;
+	    		  HashMap<String, String[]> hm=new HashMap<String, String[]>();
+	    		  
+	    		  
+	    		  while(!c.isAfterLast())
 	    		  {
 	    			  String s=c.getString(0);
-	    	      
+	    			  
 	    	    	 System.out.println("column one  is "+s);
 	    	    	  String s1=c.getString(1);
 	    	    	  System.out.println("column  two "+s1);
+	    	    	  GetsearchedResultsfromBase g=new GetsearchedResultsfromBase();
+	    	    	  String[] m=g.getitem(s1);
+	    	    	  if(m!=null)
+	    	    	  {
+	    	    	  System.out.println("m length is"+m.length);
+	    	    	  hm.put("one"+i, m);
+	    	    	  System.out.println("after putting into hashmap");
+	    	    	  }
 	    	    	  System.out.println("before launching adapter");
 	    	    	  c.moveToNext();
+	    	    	  i++;
 	    		  }
+	    		  Iterator it=hm.entrySet().iterator();
+	    		    while(it.hasNext())
+	    		    {
+	    		    Map.Entry me=(Map.Entry)it.next();
+	    		    System.out.println("key values"+me.getKey());
+	    		    String[] st=(String[]) me.getValue();
+	    		    System.out.println("values are"+st.length);
+	    		    }
+	    		  System.out.println("size of hashmap before starting new intent is"+hm.size());
+	    		  shprefs = getSharedPreferences(myshared, 0);
+	    		  SharedPreferences.Editor editor=shprefs.edit();	    		 
+	    		    b.putSerializable("hashmap", hm);
 	    	  	    Intent intnt=new Intent(getApplicationContext(),displayresults.class);
+	    	  	    intnt.putExtras(b);
 	    	  	    startActivity(intnt);
 	    	  }
+	    }
 	    	  else
 	    	  {
 	    		  System.out.println("no results for cursor");
@@ -606,7 +818,15 @@ public class mainactivity extends Activity implements OnClickListener {
 	    }
 	    
 	}
+	
+	public Drawable getimage(String st)
+	{
 		
+		Resources res = getResources();
+		int resID = res.getIdentifier(st , "drawable", getPackageName());
+		Drawable drawable = res.getDrawable(resID );
+		return drawable;
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub

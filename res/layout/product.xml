@@ -38,6 +38,16 @@
         android:orientation="horizontal"
         android:id="@+id/trset2" >
         </TableRow>
+        <TableRow
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/trset9" >
+        	
+        
+        </TableRow>
         <TableRow 
             android:layout_gravity="center"
             android:id="@+id/trset3"
@@ -90,6 +100,17 @@
             android:layout_gravity="left"
             android:layout_marginBottom="4dp"
             android:text="About this Item">
+                </TextView>>
+            </TableRow>
+            <TableRow 
+            android:layout_gravity="center"
+            android:id="@+id/trset8"
+            android:layout_marginBottom="4dp">
+            <TextView
+            android:id="@+id/aboutitem"              
+            android:layout_gravity="left"
+            android:layout_marginBottom="4dp"
+            android:text="">
                 </TextView>>
             </TableRow>
         </TableLayout>
